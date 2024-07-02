@@ -1,62 +1,44 @@
-// import 'dotenv';
-import { asc, sql } from 'drizzle-orm';
+import 'dotenv/config';
 import { db } from './drizzle/db';
-import { UserPreferencesTable, UserTable } from './drizzle/schema';
+import { PostTable, UserTable } from './drizzle/schema';
+import { eq, sql } from 'drizzle-orm';
 
 async function main() {
-  // console.log('hello')
-  // await db.insert(UserTable).values({
-  //   name: 'Roger',
-  // });
-  // const user = await db.query.UserTable.findFirst();
-  // console.log(user);
-
   // await db.delete(UserTable);
-
-  // const user = await db
+  await db.insert(PostTable).values({
+    authorId: 'e158a5b0-9475-41dc-ae51-0122a7cd6538',
+    title: 'post about something',
+  });
+  // await db
   //   .insert(UserTable)
   //   .values([
   //     {
-  //       name: 'Roger',
-  //       age: 39,
-  //       email: 'roger@demo.com',
+  //       name: 'franklin clay',
+  //       email: 'franklinclay@example.com',
+  //       age: 29,
   //     },
   //     {
-  //       name: 'Noelia',
-  //       age: 35,
-  //       email: 'noelia@demo.com',
+  //       name: 'sally jackson',
+  //       age: 46,
+  //       email: 'sallyjackson@example.com',
   //     },
   //   ])
   //   .returning({
   //     id: UserTable.id,
-  //     userName: UserTable.name,
+  //     name: UserTable.name,
+  //     email: UserTable.email,
+  //     age: UserTable.age,
+  //     role: UserTable.role,
   //   })
-  //   .onConflictDoUpdate({
-  //     target: UserTable.email,
-  //     set: { name: 'Updated Name' },
-  //   });
-
-  // console.log({ user });
-
-  // await db.insert(UserPreferencesTable).values({
-  //   emailUpdates: true,
-  //   userId: 'b402dcc6-5f49-49d9-9841-ef27a98af3cb',
+  // .onConflictDoUpdate({
+  //   target: UserTable.email,
+  //   set: { name: 'Updated Name' },
   // });
-
-  const users = await db.query.UserTable.findMany({
-    columns: { name: true, age: true },
-    // extras: { lowerCaseName: sql<string>`lower(${UserTable.name})`.as('lowerCaseName') },
-    // with: { preferences: { columns: { emailUpdates: true } } },
-    // with: {
-    //   posts: {
-    //     with: { postCategories: true },
-    //   },
-    // },
-    orderBy: asc(UserTable.age),
-    where: (table, funcs) => funcs.gt(table.age, 35),
+  const user = await db.query.UserTable.findMany({
+    where: (UserTable, { eq }) =>
+      eq(UserTable.age, 46) && eq(UserTable.email, 'sallyjackson@example.com'),
   });
-
-  console.log(users);
+  console.log(user);
 }
 
 main();

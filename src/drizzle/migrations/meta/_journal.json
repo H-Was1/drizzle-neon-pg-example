@@ -5,8 +5,36 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1716010302321,
-      "tag": "0000_lonely_peter_parker",
+      "when": 1719766160534,
+      "tag": "0000_aspiring_rage",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1719792789774,
+      "tag": "0001_giant_pete_wisdom",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1719809695774,
+      "tag": "0002_acoustic_colossus",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1719815529778,
+      "tag": "0003_careful_valkyrie",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1719816237322,
+      "tag": "0004_tricky_morph",
       "breakpoints": true
     }
   ]
