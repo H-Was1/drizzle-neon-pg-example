@@ -106,3 +106,16 @@ export const CategoryTableRelations = relations(CategoryTable, ({ many }) => {
     postCategories: many(PostCategoryTable),
   };
 });
+
+const postCategoryRelations = relations(PostCategoryTable, ({ one }) => {
+  return {
+    post: one(PostTable, {
+      fields: [PostCategoryTable.postId],
+      references: [PostTable.id],
+    }),
+    category: one(CategoryTable, {
+      fields: [PostCategoryTable.categoryId],
+      references: [CategoryTable.id],
+    }),
+  };
+});
